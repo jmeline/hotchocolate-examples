@@ -12,9 +12,9 @@ namespace Demo.Inventory
         {
             _infos = new InventoryInfo[]
             {
-                new InventoryInfo(1, true),
-                new InventoryInfo(2, false),
-                new InventoryInfo(3, true)
+                new InventoryInfo(1, true, new DateOnly(2024, 04, 05)),
+                new InventoryInfo(2, false, new DateOnly(2022, 03, 06)),
+                new InventoryInfo(3, true, new DateOnly(2025, 02, 01))
             }.ToDictionary(t => t.Upc);
         }
 
