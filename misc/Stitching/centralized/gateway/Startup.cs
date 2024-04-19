@@ -26,9 +26,9 @@ namespace Demo.Gateway
 
             services
                 .AddGraphQLServer()
-                .BindRuntimeType<DateOnly, DateType>()
-                .AddTypeConverter<DateOnly, DateTime>(from => from.ToDateTime(default))
-                .AddTypeConverter<DateTime, DateOnly>(from => DateOnly.FromDateTime(from.Date))
+                // .BindRuntimeType<DateOnly, DateType>()
+                // .AddTypeConverter<DateOnly, DateTime>(from => from.ToDateTime(default))
+                // .AddTypeConverter<DateTime, DateOnly>(from => DateOnly.FromDateTime(from.Date))
                 .AddQueryType(d => d.Name("Query"))
                 .AddRemoteSchema(Accounts, ignoreRootTypes: true)
                 .AddRemoteSchema(Inventory, ignoreRootTypes: true)
