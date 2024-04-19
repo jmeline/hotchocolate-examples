@@ -10,7 +10,7 @@ namespace Demo.Inventory
 
         public InventoryInfoRepository()
         {
-            _infos = new InventoryInfo[]
+            _infos = new[]
             {
                 new InventoryInfo(1, true, new DateOnly(2024, 04, 05)),
                 new InventoryInfo(2, false, new DateOnly(2022, 03, 06)),
