@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HotChocolate.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,6 +20,9 @@ namespace Demo.Products
             services
                 .AddSingleton<ProductRepository>()
                 .AddGraphQLServer()
+                .BindRuntimeType<DateOnly, DateType>()
+                .AddTypeConverter<DateOnly, DateTime>(from => from.ToDateTime(default))
+                .AddTypeConverter<DateTime, DateOnly>(from => DateOnly.FromDateTime(from.Date))
                 .AddQueryType<Query>();
         }
 

@@ -17,8 +17,8 @@ namespace Demo.Inventory
                 .AddSingleton<InventoryInfoRepository>()
                 .AddGraphQLServer()
                 .BindRuntimeType<DateOnly, DateType>()
-                .AddTypeConverter<DateOnly, DateTime>(from => from.ToDateTime(default))
-                .AddTypeConverter<DateTime, DateOnly>(from => DateOnly.FromDateTime(from.Date))
+                // .AddTypeConverter<DateOnly, DateTime>(from => from.ToDateTime(default))
+                // .AddTypeConverter<DateTime, DateOnly>(from => DateOnly.FromDateTime(from.Date))
                 .AddQueryType<Query>();
         }
 

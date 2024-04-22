@@ -1,5 +1,6 @@
 using System;
 using HotChocolate.AspNetCore;
+using HotChocolate.Language;
 using HotChocolate.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,14 +27,15 @@ namespace Demo.Gateway
 
             services
                 .AddGraphQLServer()
+                // .AddType<DateOnlyType>()
                 // .BindRuntimeType<DateOnly, DateType>()
                 // .AddTypeConverter<DateOnly, DateTime>(from => from.ToDateTime(default))
                 // .AddTypeConverter<DateTime, DateOnly>(from => DateOnly.FromDateTime(from.Date))
                 .AddQueryType(d => d.Name("Query"))
-                .AddRemoteSchema(Accounts, ignoreRootTypes: true)
+                // .AddRemoteSchema(Accounts, ignoreRootTypes: true)
                 .AddRemoteSchema(Inventory, ignoreRootTypes: true)
                 .AddRemoteSchema(Products, ignoreRootTypes: true)
-                .AddRemoteSchema(Reviews, ignoreRootTypes: true)
+                // .AddRemoteSchema(Reviews, ignoreRootTypes: true)
                 .AddTypeExtensionsFromFile("./Stitching.graphql");
         }
 
@@ -51,6 +53,30 @@ namespace Demo.Gateway
             {
                 endpoints.MapGraphQL();
             });
+        }
+        
+        public sealed class DateOnlyType : ScalarType<DateOnly, StringValueNode>
+        {
+
+            public DateOnlyType() : base(nameof(DateOnlyType))
+            {
+                Description = "Represents a DateOnly Field";
+            }
+
+            protected override DateOnly ParseLiteral(StringValueNode valueSyntax)
+            {
+                throw new NotImplementedException();
+            }
+
+            protected override StringValueNode ParseValue(DateOnly runtimeValue)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override IValueNode ParseResult(object resultValue)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
