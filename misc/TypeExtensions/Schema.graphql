@@ -1,3 +1,0 @@
-extend type Author {
-    birthdate: Date
-}

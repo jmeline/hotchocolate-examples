@@ -1,7 +1,0 @@
-mutation UploadProfilePicture($profilePicture: Upload!) {
-    updateUserProfile(input: { image: $profilePicture })  {
-        updatedUser {
-            ... UserInfo_User
-        }
-    }
-}
